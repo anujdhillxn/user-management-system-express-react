@@ -5,7 +5,7 @@ import { createApi } from "./createApi";
 
 export const ApiProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [requestToken, setRequestToken] = React.useState<string | null | undefined>(undefined);
-    const baseUrl = import.meta.env.API_BASE_URL || "http://localhost:5000/api/";
+    const baseUrl = "https://user-management-system-express-react.onrender.com/api/";
     const fetchToken = async () => {
         const token = localStorage.getItem("requestToken");
         setRequestToken(token);
