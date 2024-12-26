@@ -38,7 +38,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "..", "index.html"));
 });
 
 const server = http.createServer(app);
