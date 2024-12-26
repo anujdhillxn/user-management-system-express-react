@@ -25,7 +25,7 @@ const limiter = rateLimit({
         "Too many requests from this IP, please try again after 15 minutes",
 });
 app.use(limiter);
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "..", "public")));
 const databaseUrl: string = process.env.DATABASE_URL || DEV_DATABASE_URL;
 const port: string = process.env.PORT || DEV_PORT;
 mongoose.set("strictQuery", false);
