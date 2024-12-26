@@ -37,7 +37,7 @@ db.once("open", () => console.log("Connected to Database"));
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
