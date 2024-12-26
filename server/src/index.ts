@@ -7,6 +7,7 @@ import { DEV_DATABASE_URL, DEV_PORT } from "./config";
 import userRoutes from "./routes/userRoute";
 import adminRoutes from "./routes/adminRoute";
 import rateLimit from "express-rate-limit";
+import path from "path";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -24,7 +25,7 @@ const limiter = rateLimit({
         "Too many requests from this IP, please try again after 15 minutes",
 });
 app.use(limiter);
-
+app.use(express.static(path.join(__dirname, "public")));
 const databaseUrl: string = process.env.DATABASE_URL || DEV_DATABASE_URL;
 const port: string = process.env.PORT || DEV_PORT;
 mongoose.set("strictQuery", false);
@@ -35,6 +36,10 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
 
 const server = http.createServer(app);
 

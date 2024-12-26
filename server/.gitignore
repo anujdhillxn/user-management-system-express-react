@@ -3,3 +3,4 @@
 .env
 /test
 /dist
+/public
